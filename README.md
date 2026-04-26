@@ -171,6 +171,50 @@ REDDIT_SUBREDDITS = [
 - `TECH_KEYWORDS`
 - `ENTERTAINMENT_KEYWORDS`
 
+
+
+## 📄 每日论文推荐
+
+每天早上自动从 arXiv（cs.AI/cs.CL/cs.LG/cs.CV）和 Hugging Face Daily Papers 抓取最新论文，**基于你的 Zotero 论文库做关键词匹配排序**，推荐与你研究方向最相关的 Top 5-8 篇论文。
+
+### 需要配置
+
+1. **Zotero 账号**（免费）— https://www.zotero.org
+2. 获取你的 **User ID**（数字）和 **API Key**（Read Only）
+3. 写入 `~/.config/dargon-news/.env`：
+```env
+ZOTERO_USER_ID=你的数字ID
+ZOTERO_API_KEY=你的只读API Key
+```
+
+### 工作原理
+
+| 步骤 | 说明 |
+|---|---|
+| ① | 拉取 Zotero 论文库（标题+摘要），缓存 24h |
+| ② | 从 arXiv 拉最新论文（4 个分类 × 20 篇） |
+| ③ | 从 Hugging Face Daily Papers 拉取社区推荐论文 |
+| ④ | 关键词匹配：Zotero 论文库的关键词与新论文交叉评分 |
+| ⑤ | 按关联度排序，去重，输出 Top 8 |
+
+```json
+// 在 daily briefing JSON 中，papers 字段：
+{
+  "papers": [
+    {
+      "title": "PersonalAI: A Systematic Comparison...",
+      "url": "https://huggingface.co/papers/2506.17001",
+      "source": "HF_Daily",
+      "relevance_score": 65,
+      "matched_keywords": ["knowledge", "language", "models", ...]
+    }
+  ]
+}
+```
+
+所有计算在本地完成，无需调用外部 LLM API。
+
+
 ## 输出示例
 
 **🔥 持续热点**
@@ -181,6 +225,10 @@ REDDIT_SUBREDDITS = [
 
 **🤖 AI 前沿**
 - [HN] Google unveils way to train AI models across distributed data centers
+
+**📄 今日论文推荐**
+- 基于 Zotero 兴趣匹配的最新 arXiv 论文 Top 5
+- 每天另附 Hugging Face 社区热门论文
 
 **🔬 科研进展**
 - [Nature] Cosmic-ray detection heralds era of mega-observatories for neutrinos
