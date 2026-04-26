@@ -1,0 +1,9 @@
+{
+  "name": "dargon-news",
+  "version": "1.0.0",
+  "private": true,
+  "description": "🐉 DargonNews — multi-source news aggregator",
+  "scripts": {
+    "fetch": "python3 scripts/fetch_news.py"
+  }
+}
