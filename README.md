@@ -1,4 +1,4 @@
-# 🐉 DargonNews — 全球视野，中国洞察
+# 📰 DargonNews — 全球视野，中国洞察
 
 短视频在收割注意力，营销号在消解信息。算法推荐让你看到的不是世界，而是你想看到的幻象。
 
@@ -23,7 +23,7 @@ DargonNews 的核心理念：
 ## 架构
 
 ```
-dargon-news/
+morning-news/
 ├── scripts/
 │   ├── fetch_news.py         # 核心抓取脚本
 │   └── bird-search/          # X/Twitter 搜索工具（MIT License）
@@ -98,19 +98,19 @@ dargon-news/
 
 ```bash
 # 1. 克隆仓库
-git clone https://github.com/XiuFan719/dargon-news.git
-cd dargon-news
+git clone https://github.com/XiuFan719/morning-news.git
+cd morning-news
 
 # 2. 安装 X 搜索依赖
 cd scripts/bird-search && npm install && cd ../..
 
 # 3. 配置 X Cookie（可选，不配则跳过 X 来源）
-mkdir -p ~/.config/dargon-news
-cat > ~/.config/dargon-news/.env << 'EOF'
+mkdir -p ~/.config/morning-news
+cat > ~/.config/morning-news/.env << 'EOF'
 AUTH_TOKEN=你的auth_token
 CT0=你的ct0
 EOF
-chmod 600 ~/.config/dargon-news/.env
+chmod 600 ~/.config/morning-news/.env
 
 # 4. 运行
 export PATH="$HOME/local/node/bin:$PATH"
@@ -181,7 +181,7 @@ REDDIT_SUBREDDITS = [
 
 1. **Zotero 账号**（免费）— https://www.zotero.org
 2. 获取你的 **User ID**（数字）和 **API Key**（Read Only）
-3. 写入 `~/.config/dargon-news/.env`：
+3. 写入 `~/.config/morning-news/.env`：
 ```env
 ZOTERO_USER_ID=你的数字ID
 ZOTERO_API_KEY=你的只读API Key
